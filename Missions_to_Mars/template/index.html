@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mission to Mars</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="jumbotron text-center">
+      <h1>Mission to Mars</h1>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+    </div>
+
+
+    <!-- display mars data in card -->
+    <div class="row">
+        <!-- latest News Title and Paragraph Text -->
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Latest Mars News</h2>
+                    <h4 class="card-text">{{mars_dict.news_title}}</h4>
+                    <p class="card-text">{{mars_dict.news_p}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+
+        <!-- JPL Mars Space Images - Featured Image -->
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">Featured Mars Image</h2>
+                    <img src="{{mars_dict.featured_image_url}}" class="img-thumbnail" alt="Responsive image">
+                </div>
+            </div>
+        </div>
+
+        <!-- Mars Facts -->
+        <div class="col-sm-6">
+            <h4 class="card-title">Mars Facts</h4>
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Description</th>
+                        <th scope="col">Mars</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in mars_dict.mars_facts %}
+                    <tr>
+                        <td>{{item.Description}}</td>
+                        <td>{{item.Mars}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+
+        <!-- Mars Hemispheres -->
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title text-center">Mars Hemispheres</h2>
+                    {% for item in mars_dict.hemisphere_image_urls %}
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <img src="{{item.img_url}}" class="img-thumbnail" alt="Responsive image">
+                                <b>
+                                    <p class="card-text">{{item.title}}</p>
+                                </b>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+  </div>
+</body>
+
+</html>
